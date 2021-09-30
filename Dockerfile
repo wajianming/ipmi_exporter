@@ -7,10 +7,11 @@ LABEL maintainer="The Prometheus Authors <prometheus-developers@googlegroups.com
 ARG ARCH="amd64"
 ARG OS="linux"
 COPY ./ipmi_exporter /bin/ipmi_exporter
+COPY ./ipmi_remote.yml /config.yml
 
 RUN apt-get update -y \
 &&  apt-get install freeipmi-tools -y
 
 EXPOSE      9290
-USER        nobody
-ENTRYPOINT  [ "/bin/ipmi_exporter" ]
+#USER        nobody
+ENTRYPOINT  [ "/bin/ipmi_exporter", "--config.file=/config.yml" ]

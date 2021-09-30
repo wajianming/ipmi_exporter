@@ -9,3 +9,4 @@ services:
       - 9290:9290                           # bind on 0.0.0.0
       # - 127.0.0.1:9290:9290               # or bind to specific interface
     hostname: ipmi_exporter_docker
+    entrypoint: /bin/ipmi_exporter --config.file=/config.yml
